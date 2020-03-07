@@ -19,7 +19,13 @@ const routes = [
       {
         path: '', // 什么都不写代表 代表二级路由默认组件
         component: SecondHome
-      }]
+      },
+      {
+        path: 'comment', // 地址
+        component: () => import('@/views/comment')// 组件
+      }
+
+    ]
   },
   {
     path: '/login',
