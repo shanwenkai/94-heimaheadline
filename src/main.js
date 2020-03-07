@@ -6,11 +6,10 @@ import Components from '@/components'
 import ElementUI from 'element-ui'// 引入ElementUI
 import 'element-ui/lib/theme-chalk/index.css'
 import '@/styles/index.less'
-import axios from 'axios'// 引入axios
+import axios from '@/utils/request'// 引入封装的axios
 Vue.config.productionTip = false
 Vue.use(Components)
 Vue.use(ElementUI)
-axios.defaults.baseURL = 'http://ttapi.research.itcast.cn/mp/v1_0'
 Vue.prototype.$axios = axios // 将axios赋值给Vue原型对象
 new Vue({
   router,

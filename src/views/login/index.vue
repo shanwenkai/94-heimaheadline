@@ -85,7 +85,7 @@ export default {
           data: this.loginForm,
           method: 'post'
         }).then(result => {
-          window.localStorage.setItem('user-token', result.data.data.token)
+          window.localStorage.setItem('user-token', result.data.token)
           this.$router.push('/home')
         }).catch(() => {
           this.$message.error('用户名或密码错误')
