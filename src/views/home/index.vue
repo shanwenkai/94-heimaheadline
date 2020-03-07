@@ -2,7 +2,7 @@
     <div>
      <!-- 先在最外层放置一个大容器 因为 小容器只能放到大容器里面 -->
    <el-container>
-     <el-aside style="width:230px">
+     <el-aside style="width:230px; background:#2e2f32">
       <layout-aside></layout-aside>
      </el-aside>
      <!-- 右侧 再嵌套一个 el-container -->
