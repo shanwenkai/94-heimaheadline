@@ -68,7 +68,7 @@ export default {
       }).then(result => {
         this.list = result.data.results
         this.page.total = result.data.total_count
-        this.loading = false
+        this.loading = false // 关闭遮罩层
       })
     },
     formatterBool (row, column, cellValue, index) {

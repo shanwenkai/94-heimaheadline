@@ -21,6 +21,10 @@ const routes = [
         component: SecondHome
       },
       {
+        path: 'material',
+        component: () => import('@/views/material')
+      },
+      {
         path: 'comment', // 地址
         component: () => import('@/views/comment')// 组件
       }
