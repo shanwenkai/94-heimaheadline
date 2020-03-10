@@ -27,6 +27,10 @@ const routes = [
       {
         path: 'comment', // 地址
         component: () => import('@/views/comment')// 组件
+      },
+      {
+        path: 'articles',
+        component: () => import('@/views/articles')
       }
 
     ]

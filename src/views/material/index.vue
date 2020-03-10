@@ -16,8 +16,8 @@
           <el-card class='img-card' v-for="item in list" :key="item.id">
             <img :src="item.url" alt />
             <el-row class="operate" type="flex" align="middle" justify="space-around">
-              <i class="el-icon-star-on"> </i>
-              <i class="el-icon-delete-solid"></i>
+              <i @click="collectOrcancel(item)" :style="{color: item.is_collectd ? 'red' : 'black'}" class="el-icon-star-on"> </i>
+              <i @click="delMaterial(item)" class="el-icon-delete-solid"></i>
             </el-row>
           </el-card>
         </div>
@@ -60,6 +60,31 @@ export default {
     }
   },
   methods: {
+    delMaterial (row) {
+      this.$confirm('你确定要删除该图片吗', '提示').then(() => {
+        this.$axios({
+          url: `/user/images/${row.id}`,
+          method: 'delete'
+        }).then(() => {
+          this.getMaterial()
+        }).catch(() => {
+          this.$message.error('操作失败')
+        })
+      })
+    },
+    collectOrcancel (row) {
+      this.$axios({
+        url: `/user/images/${row.id}`,
+        method: 'put',
+        data: {
+          collect: !row.is_collected
+        }
+      }).then(() => {
+        this.getMaterial()
+      }).catch(() => {
+        this.$message.error('操作失败')
+      })
+    },
     uploadImg (params) {
       const data = new FormData()
       data.append('image', params.file)
