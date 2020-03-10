@@ -31,16 +31,24 @@
       <el-row class="total" type="flex" align="middle">
         <span>共找到1000条复合条件的内容</span>
       </el-row>
-      <div class="article-item" v-for="item in list" :key="item.id.toString()">
-        <!-- 左侧内容 -->
-        <div class="left">
-            <img :src="item.cover.images.length ? item.cover.images[0] : defaultImg" alt="">
-            <div class="info">
-              <span>{{item.title}}</span>
-              <el-tag :type="item.status |filterType" class='tag' > {{ item.status | filterStatus }}</el-tag>
-              <span class='date'>{{ item.pubdate }}</span>
-            </div>
-        </div>
+       <!-- 列表内容 -->
+      <!-- article-item 作为一个循环项 -->
+       <div class="article-item" v-for="item  in  list" :key="item.id.toString()">
+         <!-- 左侧内容 -->
+         <div class="left">
+           <!-- 设置文章的封面信息 有的数组有值 有的没值 搞一个默认值 -->
+               <!-- <img src="../../assets/img/default.gif" alt=""> -->
+              <!--  采用变量的形式 赋值 -->
+             <img :src=" item.cover.images.length ?  item.cover.images[0] : defaultImg" alt="">
+             <div class="info">
+               <span>{{ item.title}}</span>
+               <!-- 文章状态 0-草稿，1-待审核，2-审核通过，3-审核失败，4-已删除 -->
+               <!-- 只是改变显示的格式 可以用过滤器   两个过滤器 分别处理   显示文本 和 标签类型-->
+               <el-tag :type=" item.status | filterType" class='tag'>{{  item.status  | filterStatus}}</el-tag>
+               <!-- 发布日期 -->
+               <span class='date'>{{ item.pubdate }}</span>
+             </div>
+         </div>
         <!-- 右侧内容 -->
         <div class="right">
           <span><i class="el-icon-edit"></i> 修改</span>
@@ -79,7 +87,7 @@ export default {
       }
     },
     filterType (value) {
-        switch (value) {
+      switch (value) {
         case 0 :
           return 'warning'
         case 1:
@@ -88,7 +96,9 @@ export default {
           return ''
         case 3:
           return 'danger'
+      }
     }
+
   },
 
   methods: {
